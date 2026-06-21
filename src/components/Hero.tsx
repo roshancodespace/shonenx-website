@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ScreenshotPlaceholder } from './ScreenshotPlaceholder';
@@ -31,10 +32,10 @@ export function Hero() {
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col items-center">
         
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="flex flex-col items-center text-center max-w-4xl z-10"
         >
           {totalDownloads && totalDownloads > 0 && (
@@ -90,9 +91,9 @@ export function Hero() {
         </motion.div>
         
         <motion.div 
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          initial={{ opacity: 0, y: 100, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 100, damping: 25, delay: 0.2 }}
           style={{ y: heroImageY }}
           className="w-full max-w-6xl relative z-20 mt-8"
         >

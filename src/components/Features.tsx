@@ -1,9 +1,10 @@
+"use client";
 import React from 'react';
 import { motion } from 'motion/react';
 import { ScreenshotPlaceholder } from './ScreenshotPlaceholder';
 import { Database, Zap, BookOpen, DownloadCloud, ArrowRight } from 'lucide-react';
 import { usePlatformDetect } from '../hooks/usePlatformDetect';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export function Features() {
   const { platform } = usePlatformDetect();
@@ -37,15 +38,12 @@ export function Features() {
           </div>
         </motion.div>
 
-        {/* Dynamic Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          {/* Feature 1 - Omni-Sync (Spans 2 columns) */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className="md:col-span-2 bg-[#050505] border border-white/5 hover:border-white/10 transition-colors p-8 md:p-12 relative group overflow-hidden flex flex-col md:flex-row gap-8 items-center"
           >
             <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity text-shonen-red pointer-events-none">
@@ -74,12 +72,11 @@ export function Features() {
             </div>
           </motion.div>
 
-          {/* Feature 2 - Reader (Tall, spans 2 rows) */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
             className="md:col-span-1 md:row-span-2 bg-[#050505] border border-white/5 hover:border-white/10 transition-colors p-8 md:p-12 relative group overflow-hidden flex flex-col"
           >
             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-40 transition-opacity text-white pointer-events-none">
@@ -94,17 +91,16 @@ export function Features() {
               </p>
             </div>
 
-            <Link to="/formats" className="inline-flex items-center gap-2 font-mono text-xs uppercase text-white hover:text-shonen-red transition-colors relative z-10 mt-auto w-fit">
+            <Link href="/formats" className="inline-flex items-center gap-2 font-mono text-xs uppercase text-white hover:text-shonen-red transition-colors relative z-10 mt-auto w-fit">
               Discover Formats <ArrowRight size={14} />
             </Link>
           </motion.div>
 
-          {/* Feature 3 - Offline */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
             className="md:col-span-1 bg-[#050505] border border-white/5 hover:border-white/10 transition-colors p-8 md:p-12 relative group overflow-hidden flex flex-col justify-between min-h-[320px]"
           >
             <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity text-neutral-500 pointer-events-none">
@@ -124,12 +120,11 @@ export function Features() {
             </a>
           </motion.div>
 
-          {/* Feature 4 - Performance */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
             className="md:col-span-1 bg-shonen-red text-black p-8 md:p-12 relative group overflow-hidden flex flex-col justify-between min-h-[320px]"
           >
              <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity pointer-events-none">
@@ -150,12 +145,11 @@ export function Features() {
              </div>
           </motion.div>
 
-          {/* Feature 5 - Extensions */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
             className="md:col-span-3 bg-shonen-dark border border-shonen-border p-8 md:p-12 relative group overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 mt-6"
           >
              <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">

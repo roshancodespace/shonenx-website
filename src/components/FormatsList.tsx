@@ -1,7 +1,8 @@
+"use client";
 import React from 'react';
 import { motion } from 'motion/react';
 import { BookOpen, Tv, Database, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export function FormatsList() {
   const formats = [
@@ -28,7 +29,7 @@ export function FormatsList() {
   return (
     <section className="pt-8 pb-24 border-b border-shonen-border bg-scanlines min-h-screen">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-        <Link to="/" className="inline-flex items-center gap-2 font-mono text-xs uppercase text-neutral-400 hover:text-white transition-colors mb-12">
+        <Link href="/" className="inline-flex items-center gap-2 font-mono text-xs uppercase text-neutral-400 hover:text-white transition-colors mb-12">
           <ArrowLeft size={14} /> Back to Home
         </Link>
         

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { useRemoteConfig } from '../hooks/useRemoteConfig';
 import { AlertTriangle, Info, X } from 'lucide-react';

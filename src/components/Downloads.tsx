@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Apple, Smartphone, Monitor, Download, Terminal, HardDrive, Loader2, Check, Copy, AlertTriangle } from 'lucide-react';
@@ -85,10 +86,10 @@ export function Downloads() {
     <section id="download" className="py-24 border-b border-shonen-border bg-scanlines relative min-h-screen">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
         >
           <div className="max-w-2xl">
@@ -151,10 +152,10 @@ export function Downloads() {
             
             {/* Android Card */}
             <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
               whileHover={{ scale: 1.02, zIndex: 10, position: 'relative' }}
               className={`p-8 flex flex-col group transition-all duration-300 ${platform === 'android' ? 'bg-shonen-surface' : 'bg-shonen-dark hover:bg-shonen-surface'}`}
             >
@@ -203,10 +204,10 @@ export function Downloads() {
 
             {/* Windows Card */}
             <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
               whileHover={{ scale: 1.02, zIndex: 10, position: 'relative' }}
               className={`p-8 flex flex-col group transition-all duration-300 ${platform === 'windows' ? 'bg-shonen-surface' : 'bg-shonen-dark hover:bg-shonen-surface'}`}
             >
@@ -249,10 +250,10 @@ export function Downloads() {
 
             {/* Linux Card */}
             <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
               whileHover={{ scale: 1.02, zIndex: 10, position: 'relative' }}
               className={`p-8 flex flex-col group transition-all duration-300 ${platform === 'linux' ? 'bg-shonen-surface' : 'bg-shonen-dark hover:bg-shonen-surface'}`}
             >
@@ -297,10 +298,10 @@ export function Downloads() {
         
         {config?.downloadsEnabled !== false && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
             className="mt-12 bg-shonen-surface border border-shonen-border p-6 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-shonen-dark/50 to-transparent pointer-events-none z-0"></div>

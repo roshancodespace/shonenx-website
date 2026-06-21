@@ -1,8 +1,9 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { GitCommit, Tag, CornerDownRight, Loader2, ArrowLeft } from 'lucide-react';
 import { fetchWithCache } from '../lib/fetchWithCache';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface ReleaseAsset {
   name: string;
@@ -46,7 +47,7 @@ export function Changelogs() {
     <div className="min-h-screen bg-shonen-dark pt-8 pb-24">
       <div className="max-w-4xl mx-auto px-4 md:px-8">
         <div className="mb-12">
-          <Link to="/" className="inline-flex items-center gap-2 text-shonen-red hover:text-white font-mono text-sm uppercase tracking-wider mb-8 transition-colors">
+          <Link href="/" className="inline-flex items-center gap-2 text-shonen-red hover:text-white font-mono text-sm uppercase tracking-wider mb-8 transition-colors">
             <ArrowLeft size={16} /> Back to Home
           </Link>
           <h1 className="font-display font-bold text-5xl md:text-7xl uppercase tracking-tighter">
@@ -75,7 +76,6 @@ export function Changelogs() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative pl-8 md:pl-12 border-l border-shonen-border"
               >
-                {/* Timeline dot */}
                 <div className="absolute left-0 top-0 w-3 h-3 -translate-x-[1.5px] rounded-full bg-shonen-dark border-2 border-shonen-red"></div>
                 
                 <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">

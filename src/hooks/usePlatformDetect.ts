@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from 'react';
 
 export type Platform = 'android' | 'ios' | 'windows' | 'mac' | 'linux' | 'unknown';

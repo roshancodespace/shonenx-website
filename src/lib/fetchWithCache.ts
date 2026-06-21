@@ -1,3 +1,4 @@
+"use client";
 const CACHE_PREFIX = 'shonenx_cache_';
 const CACHE_DURATION = 60 * 1000; // 1 minute in milliseconds
 

@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 
 export function DiscordIcon({ size = 14, className = "" }: { size?: number, className?: string }) {

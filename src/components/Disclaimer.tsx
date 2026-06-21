@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { ShieldAlert, Info, FileWarning } from 'lucide-react';
 import { motion } from 'motion/react';

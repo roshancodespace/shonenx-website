@@ -1,6 +1,7 @@
+"use client";
 import React from 'react';
 import { Github, CodeXml, Heart, ShieldAlert, GitCommit, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { DiscordIcon } from './DiscordIcon';
 
 export function Footer() {
@@ -21,7 +22,7 @@ export function Footer() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 items-start md:items-end justify-end w-full flex-wrap xl:flex-nowrap">
-            <Link to="/changelogs" className="w-full sm:w-auto bg-black border border-shonen-border text-white px-8 py-5 hover:border-shonen-red hover:text-shonen-red transition-all flex items-center justify-center gap-3 font-mono text-sm uppercase group whitespace-nowrap">
+            <Link href="/changelogs" className="w-full sm:w-auto bg-black border border-shonen-border text-white px-8 py-5 hover:border-shonen-red hover:text-shonen-red transition-all flex items-center justify-center gap-3 font-mono text-sm uppercase group whitespace-nowrap">
               <GitCommit size={18} className="group-hover:animate-pulse" />
               Changelogs
             </Link>
@@ -44,7 +45,7 @@ export function Footer() {
           <div className="flex gap-4 md:gap-8 flex-wrap">
             <a href="/#disclaimer" className="hover:text-white transition-colors flex items-center gap-1"><ShieldAlert size={10} /> Legal / DMCA</a>
             <a href="https://github.com/roshancodeapace/ShonenX/blob/main/LICENSE" className="hover:text-white transition-colors">License: Apache 2.0</a>
-            <Link to="/changelogs" className="hover:text-white transition-colors">Releases</Link>
+            <Link href="/changelogs" className="hover:text-white transition-colors">Releases</Link>
           </div>
         </div>
       </div>

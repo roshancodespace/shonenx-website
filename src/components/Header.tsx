@@ -1,8 +1,8 @@
+"use client";
 import React, { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'motion/react';
 import { Github, Terminal, Layers, Heart, Download, Menu, X, Info } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Logo } from './Logo';
+import Link from 'next/link';
 import { ShonenXIcon } from './ShonenXIcon';
 import { DiscordIcon } from './DiscordIcon';
 import { useRemoteConfig } from '../hooks/useRemoteConfig';
@@ -38,7 +38,7 @@ export function Header() {
         className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl"
       >
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
             <motion.div 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -55,12 +55,12 @@ export function Header() {
 
           <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-wider text-neutral-400">
             <div className="hidden md:flex items-center gap-6">
-              <Link to="/formats">
+              <Link href="/formats">
                 <motion.div whileHover={{ y: -2, color: '#fff' }} className="flex items-center gap-2 transition-colors cursor-pointer"><Layers size={14} /> Formats</motion.div>
               </Link>
               <motion.a whileHover={{ y: -2, color: '#fff' }} href="/#features" className="flex items-center gap-2 transition-colors cursor-pointer"><Layers size={14} /> Features</motion.a>
               <motion.a whileHover={{ y: -2, color: '#fff' }} href="/#disclaimer" className="flex items-center gap-2 transition-colors cursor-pointer"><Terminal size={14} /> Legal</motion.a>
-              <Link to="/changelogs">
+              <Link href="/changelogs">
                 <motion.div whileHover={{ y: -2, color: '#fff' }} className="flex items-center gap-2 transition-colors cursor-pointer"><Terminal size={14} /> Changelogs</motion.div>
               </Link>
               <motion.a whileHover={{ y: -2, color: '#fff' }} href="https://discord.gg/uJyXZYSmH4" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-colors cursor-pointer"><DiscordIcon size={14} /> Discord</motion.a>
@@ -125,7 +125,7 @@ export function Header() {
           >
             <div className="flex flex-col gap-2 text-neutral-300 pb-12">
               <Link 
-                to="/formats" 
+                href="/formats" 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-3 py-4 border-b border-white/10 hover:text-white hover:border-shonen-red transition-colors"
               >
@@ -146,7 +146,7 @@ export function Header() {
                 <Terminal size={16} className="text-shonen-red" /> Legal
               </a>
               <Link 
-                to="/changelogs" 
+                href="/changelogs" 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-3 py-4 border-b border-white/10 hover:text-white hover:border-shonen-red transition-colors"
               >

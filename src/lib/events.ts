@@ -1,3 +1,4 @@
+"use client";
 export const OPEN_ANNOUNCEMENTS = 'shonenx:open_announcements';
 export const CLOSE_ANNOUNCEMENTS = 'shonenx:close_announcements';
 

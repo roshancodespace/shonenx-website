@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { motion } from 'motion/react';
 import { Terminal } from 'lucide-react';
@@ -9,7 +10,6 @@ export function Ticker() {
     "CUSTOM THEMES", "MULTI-SOURCE", "BUILT FOR FUN"
   ];
   
-  // Duplicate for seamless loop
   const duplicatedItems = [...items, ...items, ...items];
 
   return (

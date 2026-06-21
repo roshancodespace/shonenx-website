@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ScreenshotPlaceholder } from './ScreenshotPlaceholder';
@@ -165,9 +166,9 @@ export function TreeShowcase() {
              >
                <motion.div
                  key={activeFile.id}
-                 initial={{ opacity: 0, scale: 0.95 }}
-                 animate={{ opacity: 1, scale: 1 }}
-                 transition={{ duration: 0.3 }}
+                 initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                 animate={{ opacity: 1, y: 0, scale: 1 }}
+                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                  className="w-full h-full flex items-center justify-center relative z-10"
                >
                  <ScreenshotPlaceholder 
