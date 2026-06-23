@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Apple, Smartphone, Monitor, Download, Terminal, HardDrive, Loader2, Check, Copy, AlertTriangle } from 'lucide-react';
+import { Smartphone, Monitor, Download, Terminal, HardDrive, Loader2, Check, Copy, AlertTriangle } from 'lucide-react';
 import { usePlatformDetect } from '../hooks/usePlatformDetect';
 import { fetchWithCache } from '../lib/fetchWithCache';
 import { useRemoteConfig } from '../hooks/useRemoteConfig';
@@ -61,15 +61,20 @@ export function Downloads() {
     return count.toString();
   };
 
+  // Asset parsers
   const androidAssets = targetRelease?.assets?.filter(a => a.name.endsWith('.apk')) || [];
   const arm64 = androidAssets.find(a => a.name.includes('arm64-v8a'));
   const armv7 = androidAssets.find(a => a.name.includes('armeabi-v7a'));
   const x86 = androidAssets.find(a => a.name.includes('x86_64'));
 
-  const winExe = targetRelease?.assets?.find(a => a.name.endsWith('.exe') && a.name.includes('Setup'));
+  // Fallback to match any executable if Setup variants are missing
+  const winExe = targetRelease?.assets?.find(a => a.name.endsWith('.exe'));
   const winZip = targetRelease?.assets?.find(a => a.name.endsWith('.zip') && a.name.includes('Portable'));
 
-  const linuxBundle = targetRelease?.assets?.find(a => a.name.includes('linux-bundle.zip'));
+  // Broad search matching any zip containing "linux"
+  const linuxBundle = targetRelease?.assets?.find(a => 
+    a.name.toLowerCase().endsWith('.zip') && a.name.toLowerCase().includes('linux')
+  );
 
   const copyInstallScript = () => {
     navigator.clipboard.writeText('bash <(curl -fsSL https://raw.githubusercontent.com/Darkx-dev/ShonenX/main/install.sh)');
@@ -228,13 +233,14 @@ export function Downloads() {
               <div className="flex-grow transform transition-transform duration-300 group-hover:translate-x-2">
                 <p className="font-mono tracking-widest text-neutral-500 text-[10px] uppercase mb-2">Windows</p>
                 <h3 className="font-display font-bold text-2xl uppercase mb-1">Desktop App</h3>
-                <p className="font-mono text-neutral-400 text-xs mb-6">Choose between the full installer or portable executable.</p>
+                <p className="font-mono text-neutral-400 text-xs mb-6">Download the official application binary built for Windows.</p>
               </div>
               
               <div className="flex flex-col gap-2 w-full mt-auto">
                 {winExe && (
-                  <a href={winExe.browser_download_url} className="w-full flex items-center justify-center p-3 font-mono font-bold text-[10px] uppercase tracking-widest transition-colors bg-shonen-red text-black hover:bg-white group/btn">
-                    <span className="flex items-center gap-2"><Download size={12} className="group-hover/btn:animate-bounce" /> Setup Installer .exe</span>
+                  <a href={winExe.browser_download_url} className="w-full flex flex-col items-center justify-center p-3 font-mono font-bold text-[10px] uppercase tracking-widest transition-colors bg-shonen-red text-black hover:bg-white relative overflow-hidden group/btn">
+                    <span className="mb-0.5 flex items-center gap-2"><Download size={12} className="group-hover/btn:animate-bounce" /> Desktop Executable (.exe)</span>
+                    <span className="text-[8px] opacity-70">{getFormatSize(winExe.size)}</span>
                   </a>
                 )}
                 {winZip && (
@@ -274,21 +280,19 @@ export function Downloads() {
               <div className="flex-grow transform transition-transform duration-300 group-hover:translate-x-2">
                 <p className="font-mono tracking-widest text-neutral-500 text-[10px] uppercase mb-2">Linux</p>
                 <h3 className="font-display font-bold text-2xl uppercase mb-1">Native Bundle</h3>
-                <p className="font-mono text-neutral-400 text-xs mb-6">Or use our one-line install script to setup the desktop entry automatically.</p>
+                <p className="font-mono text-neutral-400 text-xs mb-6">Extract the application package or execute the shell script installation setup below.</p>
               </div>
               
               <div className="flex flex-col gap-2 w-full mt-auto">
-                <button 
-                  onClick={copyInstallScript}
-                  className="w-full flex items-center justify-center p-3 font-mono font-bold text-[10px] uppercase tracking-widest transition-colors bg-shonen-red text-black hover:bg-white gap-2"
-                >
-                  {copiedScript ? <Check size={12} /> : <Terminal size={12} />}
-                  {copiedScript ? 'Copied to Clipboard' : 'Copy Install Script'}
-                </button>
-                {linuxBundle && (
-                  <a href={linuxBundle.browser_download_url} className="w-full flex items-center justify-between p-3 font-mono font-bold text-[10px] uppercase tracking-widest transition-colors bg-shonen-dark border border-white/10 hover:bg-white hover:text-black hover:border-white">
-                    <span className="flex items-center gap-2 text-white/80 inherit-current"><Download size={12} /> Bundle .zip</span>
+                {linuxBundle ? (
+                  <a href={linuxBundle.browser_download_url} className="w-full flex flex-col items-center justify-center p-3 font-mono font-bold text-[10px] uppercase tracking-widest transition-colors bg-shonen-red text-black hover:bg-white relative overflow-hidden group/btn">
+                    <span className="mb-0.5 flex items-center gap-2"><Download size={12} className="group-hover/btn:animate-bounce" /> Linux Bundle (.zip)</span>
+                    <span className="text-[8px] opacity-70">{getFormatSize(linuxBundle.size)}</span>
                   </a>
+                ) : (
+                  <div className="text-xs text-neutral-500 font-mono py-3 border border-dashed border-shonen-border text-center">
+                    Use quick installer terminal option
+                  </div>
                 )}
               </div>
             </motion.div>
@@ -328,5 +332,4 @@ export function Downloads() {
       </div>
     </section>
   );
-}
-
+              }
